@@ -1,0 +1,1 @@
+from app.routes.kb_agent import router as kb_agent_router
