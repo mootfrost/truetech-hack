@@ -1,9 +1,14 @@
+import logging
+
 from langchain.schema import SystemMessage, HumanMessage
 from app.routes.user_base import users
 from app.agents.BaseAgent import BaseAgent
 from app.deps import chat_model, get_session
 from app.models import User
+import logging
 import re
+
+logger = logging.getLogger('uvicorn.error')
 
 
 class IntentAgent(BaseAgent):
@@ -57,14 +62,14 @@ class IntentAgent(BaseAgent):
         if context:
             user_info = await self.analyze_user(context['user'])
             preprocessed += ' То, что мы знаем о пользователе, это может помочь:' + user_info
-            print(f'[User Info]: {user_info}')
+            logger.debug(f'[User Info]: {user_info}')
 
         intent = await self.get_intent(preprocessed)
         entities = await self.extract_entities(intent, preprocessed)
 
-        print(f'[Intent]: {intent}')
-        print(f'[Entities]: {entities}')
+        logger.debug(f'[Intent]: {intent}')
+        logger.debug(f'[Entities]: {entities}')
 
-        final_answer = await self.summ_ask(intent, entities, user_info)
-        print(final_answer)
+        # final_answer = await self.summ_ask(intent, entities, user_info)
+        # print(final_answer)
         return intent

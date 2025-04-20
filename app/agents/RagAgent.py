@@ -80,7 +80,6 @@ class RagAgent(BaseAgent):
 
         splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=500, separators=['},', '}\n'])
         docs = splitter.split_documents(documents)
-        print(len(docs))
         for batch in self.batch_by_token_limit(docs, token_limit=8192):
             await self.vectorstore.aadd_documents(batch)
         return {'chunks': len(docs), 'status': 'ok'}

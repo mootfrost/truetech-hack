@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Segoe UI, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.left-panel,
+.right-panel {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.suggestion {
+    display: block;
+    color: #444;
+    font-size: 0.95em;
+    margin-top: 4px;
+}
+
+.left-panel {
+    flex: 2;
+    background: #ffffff;
+    border-right: 1px solid #eee;
+}
+.history-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.2s;
+}
+
+.history-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.history-time {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.history-query {
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.suggestion {
+    font-size: 14px;
+    color: #007acc;
+    line-height: 1.4;
+}
+.result-box {
+    font-size: 1.5em!important;
+    line-height: 1.5;
+}
+@media (max-width: 768px) {
+    .history-card {
+        font-size: 1rem;
+        padding: 10px 14px;
+    }
+}
+
+.history-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.right-panel {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+.form-panel {
+    background: #fff;
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.input-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #005f99;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.result-box,
+.history-box {
+    flex: 1;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-y: auto;
+    font-size: 14px;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .layout {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .left-panel {
+        flex: none;
+        width: 100%;
+        height: 40vh;
+        overflow-y: auto;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .right-panel {
+        flex: none;
+        width: 100%;
+        height: 60vh;
+        overflow: hidden;
+        padding: 1rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .history-box {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 270px;
+    }
+
+    .form-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 1rem;
+        border-top: 1px solid #ddd;
+        box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
+        z-index: 10;
+    }
+
+    input[type="text"],
+    button[type="submit"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

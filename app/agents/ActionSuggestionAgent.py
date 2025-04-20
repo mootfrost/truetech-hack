@@ -21,15 +21,13 @@ class ActionSuggestionAgent(BaseAgent):
     async def run(self, query: str, context: dict = None) -> str:
         intent = IntentAgent()
         end_intent = await intent.run(query, context)
-
         emot = EmotionAgent()
-        end_emot = await emot.detert_emotion(query)
-
+        end_emot = await emot.run(query)
         answer = RagAgent()
         end_answer = await answer.run(query, context)
 
-        end_hint = await self.hint(end_intent, end_emot, end_answer)
+        # end_hint = await self.hint(end_intent, end_emot, end_answer)
 
-        print(f'[end_hint]: {end_hint}')
+        # print(f'[end_hint]: {end_hint}')
 
-        return end_hint
+        return end_intent, end_emot, end_answer
