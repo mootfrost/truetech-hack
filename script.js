@@ -66,6 +66,7 @@ if (!response.ok) {
     }
     });
     
+
     // Функция для форматирования и отображения результатов
     function renderResult({ intent, emotion, suggesion }) {
     let emotionText = '';
