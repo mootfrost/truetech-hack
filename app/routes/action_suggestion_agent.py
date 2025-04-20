@@ -16,7 +16,7 @@ router = APIRouter(prefix="/suggest")
 
 class QueryAgentRequest(BaseModel):
     question: str
-    id: int | None = None
+    id: int | None | str = None
     phone: str | None = None
 
 
@@ -24,12 +24,12 @@ class QueryAgentRequest(BaseModel):
 async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_session)):
     agent = ActionSuggestionAgent()
     context = None
-    if req.id is not None:
+    if req.id is not None and req.id != "":
         result = await session.execute(select(User).where(User.id == req.id))
         user = result.scalar_one_or_none()
         if user:
             context = {"user": user.to_human_readable()}
-    elif req.phone is not None:
+    elif req.phone is not None and req.phone != "":
         result = await session.execute(select(User).where(User.phone == req.phone))
         user = result.scalar_one_or_none()
         if user:

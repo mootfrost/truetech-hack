@@ -1,4 +1,4 @@
-# Решение кйса LLM ассистента команды GuVolution
+# Решение кeйса LLM ассистента командой GuVolution
 
 ## Демо решения: https://truehack.mootfrost.dev
 ## Демо API решения: https://truehack.mootfrost.dev/docs
