@@ -18,12 +18,13 @@ async def request(text: str, id: int | None = None, phone: str | None = None, se
         result = await session.execute(select(User).where(User.id == id))
         user = result.scalar_one_or_none()
         if user:
-            context = {'user': user}
+            context = {'user': user.to_human_readable()}
     elif phone is not None:
         result = await session.execute(select(User).where(User.phone == phone))
         user = result.scalar_one_or_none()
         if user:
-            context = {'user': user}
+            context = {'user': user.to_human_readable()}
+    print(context['user'])
 
     result = await agent.run(query=text, context=context)
     return {'message': result}

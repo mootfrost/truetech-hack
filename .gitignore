@@ -10,3 +10,7 @@ wheels/
 .venv
 .idea
 .env
+
+app/random_users.sql
+app/res.txt
+app/kb.txt
