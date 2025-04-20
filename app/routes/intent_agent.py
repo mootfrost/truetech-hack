@@ -53,7 +53,7 @@ def detert_user(id):
     },
       {"role": "user", "content": f"Проанализируй информацию и определи кейсы {users[id]}"}
   ],
-        "temperature": 0
+        "temperature": 0.2
     }
     return user_info
 

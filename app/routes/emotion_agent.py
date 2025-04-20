@@ -4,20 +4,30 @@ import requests
 import re
 
 
-def preprocess(text):
-    text = text.lower()
-    text = re.sub(r"[^\w\s]", "", text)      # удаление пунктуации
-    text = text.strip()
-    return text
-
-
 def classify_with_model(text):
-    payload = {
+    prompt = {
         "model": 'mws-gpt-alpha',
-        "messages": [{"role": "user", "content": f"Определи эмоции клиента: '{text}'"}],
-        "temperature": 0
+        "messages": [{"role": """Ты — AI-анализатор эмоций в сообщениях пользователя. 
+Твоя задача — определить эмоцию, тональность и необходимость эскалации к оператору.
+    
+Формат ответа: JSON с полями:
+{
+  "emotion": <эмоция>,
+  "sentiment": <позитивно/негативно/нейтрально>,
+  "escalate": true/false,
+  "emotion_force": от 0 до 100
+  
+}
+
+emotion_force - cbkf 'vjwbb
+
+Эмоции: злость, раздражение, разочарование, грусть, страх, радость, удивление, благодарность, нейтрально.
+""",
+        "content": f"Определи эмоции клиента: '{text}' верни json"}],
+        "temperature": 0.5
     }
-    return  payload
+    return prompt
+
 
 headers = {
     'Authorization': 'Bearer ' + config.mws_token
