@@ -9,8 +9,7 @@ class WeaviateConfig(BaseModel):
 
 
 class Config(BaseSettings):
-    model_config = SettingsConfigDict(env_nested_max_split=1,
-                                      env_nested_delimiter='_')
+    model_config = SettingsConfigDict(env_nested_max_split=1, env_nested_delimiter="_")
 
     db_string: str
 
@@ -21,7 +20,6 @@ class Config(BaseSettings):
     chat_model: str
 
 
+config = Config(_env_file=".env")
 
-config = Config(_env_file='.env')
-
-__all__ = ['config']
+__all__ = ["config"]

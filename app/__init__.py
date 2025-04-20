@@ -2,25 +2,30 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
-from app.routes import in_agent_router, em_agent_router, kb_agent_router, ac_agent_router
+from app.routes import (
+    in_agent_router,
+    em_agent_router,
+    kb_agent_router,
+    ac_agent_router,
+)
 import uvicorn
 
 
 log_config = uvicorn.config.LOGGING_CONFIG
-log_config['formatters']['access']['fmt'] = '%(asctime)s - %(levelname)s - %(message)s'
-log_config['formatters']['default']['fmt'] = '%(asctime)s - %(levelname)s - %(message)s'
+log_config["formatters"]["access"]["fmt"] = "%(asctime)s - %(levelname)s - %(message)s"
+log_config["formatters"]["default"]["fmt"] = "%(asctime)s - %(levelname)s - %(message)s"
 app = FastAPI()
 
 
-app.mount('/static', StaticFiles(directory='app/static', html=True), name='static')
+app.mount("/static", StaticFiles(directory="app/static", html=True), name="static")
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=['*'],
-    allow_headers=['*']
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -29,9 +34,10 @@ app.include_router(in_agent_router)
 app.include_router(em_agent_router)
 app.include_router(ac_agent_router)
 
-@app.get('/')
+
+@app.get("/")
 async def index():
-    return FileResponse('app/static/index.html', media_type='text/html')
+    return FileResponse("app/static/index.html", media_type="text/html")
 
 
-__all__ = ['app', 'log_config']
+__all__ = ["app", "log_config"]

@@ -7,13 +7,16 @@ from app.agents.RagAgent import RagAgent
 
 
 class ActionSuggestionAgent(BaseAgent):
-
     @staticmethod
-    async def hint(intent: str, emotion: str, decide:str) -> str:
+    async def hint(intent: str, emotion: str, decide: str) -> str:
         messages = [
-            SystemMessage(content='Ты учитель - даёшь точные краткие советы которые всегда работают'),
-            HumanMessage(content=f'''Проанализировав текст ответь на вопросы: что ответить человеку, каким тоном, 
-                                 и какое действие выполнить опираясь на целль - {intent} и эмоции - Х+{emotion} и используя готовое решение {decide}. Не говори ничего лишнего, только чистый ответ на вопрос пользователя, который сразу покажется ему. Например, не пиши, например, "Чтобы ответить на вопрос" или "Ответ", сразу отыечай на вопрос'''),
+            SystemMessage(
+                content="Ты учитель - даёшь точные краткие советы которые всегда работают"
+            ),
+            HumanMessage(
+                content=f"""Проанализировав текст ответь на вопросы: что ответить человеку, каким тоном, 
+                                 и какое действие выполнить опираясь на целль - {intent} и эмоции - Х+{emotion} и используя готовое решение {decide}. Не говори ничего лишнего, только чистый ответ на вопрос пользователя, который сразу покажется ему. Например, не пиши, например, "Чтобы ответить на вопрос" или "Ответ", сразу отыечай на вопрос"""
+            ),
         ]
         response = await chat_model.apredict_messages(messages)
         return response.content

@@ -9,4 +9,4 @@ async_session = async_sessionmaker(
     expire_on_commit=False,
 )
 
-__all__ = ['engine', 'async_session']
+__all__ = ["engine", "async_session"]

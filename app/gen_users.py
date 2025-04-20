@@ -47,7 +47,7 @@ def generate_insert_queries(n=100):
 
 
 queries = generate_insert_queries(100)
-file_path = 'random_users.sql'
-with open(file_path, 'w') as file:
+file_path = "random_users.sql"
+with open(file_path, "w") as file:
     for query in queries:
-        file.write(query + '\n')
+        file.write(query + "\n")
