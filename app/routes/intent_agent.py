@@ -3,8 +3,6 @@ from app.config import config
 from app.routes.user_base import users
 import requests
 import re
-# import spacy
-
 
 
 def preprocess(text):
@@ -35,9 +33,10 @@ def create_script_ML(intent, text):
         "messages": [
     {
       "role": "system",
-      "content": f"ты аналитик по услугам"
+      "content": """Ты — модель для извлечения сущностей из пользовательских сообщений на основе заданного интента.
+      Формат ответа: только JSON с ключами и значениями сущностей."""
     },
-      {"role": "user", "content": f"Проанализируй информацию и определи основные кейсы {users[id]}"}
+      {"role": "user", "content": f"Твоя задача: получить сущности, нужные для работы с {intent} из текста {text}"}
   ],
         "temperature": 0.2
     }
@@ -69,11 +68,15 @@ async def request(text: str, id):
     resp = requests.post('https://api.gpt.mws.ru/v1/chat/completions', headers=headers, json=verify_intent(text))
     user_intent = resp.json()["choices"][0]["message"]["content"]
 
-    response = requests.post('https://api.gpt.mws.ru/v1/chat/completions', headers=headers, json=detert_user(id))
-    info_about_user = response.json()["choices"][0]["message"]["content"]
+    response1 = requests.post('https://api.gpt.mws.ru/v1/chat/completions', headers=headers, json=detert_user(id))
+    info_about_user = response1.json()["choices"][0]["message"]["content"]
+
+    response2 = requests.post('https://api.gpt.mws.ru/v1/chat/completions', headers=headers, json=create_script_ML(user_intent, id))
+    scripts = response2.json()["choices"][0]["message"]["content"]
 
 
-    print(type(user_intent), info_about_user)
+    print(scripts)
+    print(user_intent, info_about_user)
     return {'message': info_about_user}
 
 
