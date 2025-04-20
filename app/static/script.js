@@ -68,7 +68,7 @@ function renderResult({ intent, emotion, suggestion }) {
     let emotionText = '';
     if (emotion <= 30) emotionText = 'спокоен 😌';
     else if (emotion <= 60) emotionText = 'раздражён 😠';
-    else emotionText = 'злой 😡';
+    else emotionText = 'напряжен 😡 возможно, ожидает немедленного решения';
 
     const html = `<p><strong>Причина обращения:</strong> ${intent || 'Не определено'}</p>     <p><strong>Эмоциональность:</strong> ${emotion} (${emotionText})</p>     <p><strong>Рекомендуемое решение:</strong><br>${suggestion}</p>`;
 
