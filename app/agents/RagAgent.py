@@ -5,12 +5,13 @@ import tempfile
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 import os
+from app.agents.BaseAgent import BaseAgent
 
 from app.ai_models import embedding_model, chat_model
 from app.config import config
 
 
-class RagAgent:
+class RagAgent(BaseAgent):
     def __init__(self):
         self.client = weaviate.connect_to_local(port=config.weaviate.http_port,
                                                 grpc_port=config.weaviate.grpc_port,
@@ -18,12 +19,12 @@ class RagAgent:
 
         self.vectorstore = WeaviateVectorStore(
             client=self.client,
-            index_name="Document",
-            text_key="content",
+            index_name='Document',
+            text_key='content',
             embedding=embedding_model
         )
 
-    async def run(self, query: str, context: str = "") -> str:
+    async def run(self, query: str, context: str = '') -> str:
         retriever = self.vectorstore.as_retriever()
         chain = RetrievalQA.from_chain_type(llm=chat_model, retriever=retriever)
         return chain.run(query)
@@ -38,7 +39,7 @@ class RagAgent:
             tmp.write(await file.read())
             tmp_path = tmp.name
 
-        loader = TextLoader(tmp_path, encoding="utf-8")
+        loader = TextLoader(tmp_path, encoding='utf-8')
         documents = loader.load()
         os.remove(tmp_path)
 

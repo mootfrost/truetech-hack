@@ -20,7 +20,7 @@ def classify_with_model(text):
     return  payload
 
 headers = {
-    'Authorization': 'Bearer ' + config.mws_token
+    'Authorization': 'Bearer ' + config.openai_token
 }
 
 
