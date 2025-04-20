@@ -1,10 +1,8 @@
-# Generating the SQL queries and saving them to a file
-
 import random
 import faker
 
-# Initialize Faker to generate random data
 fake = faker.Faker()
+
 
 def generate_random_user():
     return {
@@ -36,6 +34,7 @@ def generate_random_user():
         "virtual_card_mts_money": random.choice([True, False]),
     }
 
+
 def generate_insert_queries(n=100):
     queries = []
     for _ in range(n):
@@ -46,13 +45,9 @@ def generate_insert_queries(n=100):
         queries.append(query)
     return queries
 
-# Generate the queries
-queries = generate_insert_queries(100)
 
-# Saving the queries to a file
+queries = generate_insert_queries(100)
 file_path = 'random_users.sql'
 with open(file_path, 'w') as file:
     for query in queries:
         file.write(query + '\n')
-
-file_path  # Returning the file path so it can be accessed by the user.

@@ -6,6 +6,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 import os
 from app.agents.BaseAgent import BaseAgent
+from langchain.prompts import PromptTemplate
 from tiktoken import get_encoding
 
 
@@ -26,9 +27,23 @@ class RagAgent(BaseAgent):
             embedding=embedding_model
         )
 
+        self.prompt = PromptTemplate(
+            template='Предоставь чистый ответ, не пиши ничего лишноего, только ответ на вопрос'
+                     'Контекст: {context}\n'
+                     'Вопрос: {question}',
+            input_variables=["context", "question"]
+        )
+
     async def run(self, query: str, context: dict = None) -> str:
         retriever = self.vectorstore.as_retriever()
-        chain = RetrievalQA.from_chain_type(llm=chat_model, retriever=retriever)
+        chain = RetrievalQA.from_chain_type(
+            llm=chat_model,
+            retriever=retriever,
+            chain_type='stuff',
+            chain_type_kwargs={
+                'prompt': self.prompt
+            }
+        )
         return chain.run(query)
 
     @staticmethod
