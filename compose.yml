@@ -1,0 +1,26 @@
+services:
+  weaviate:
+    image: semitechnologies/weaviate:latest
+    ports:
+      - "3002:8080"
+    env_file:
+      - .env
+    environment:
+      QUERY_DEFAULTS_ACCEPT_LANGUAGE: "ru"
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+      WEAVIATE_DB_PATH: "/var/lib/weaviate"
+      DEFAULT_VECTORIZER_MODULE: "text2vec-transformers"
+      ENABLE_MODULES: "text2vec-transformers"
+      OPENAI_API_KEY: ${openai_token}
+      OPENAI_API_BASE: ${openai_endpoint}
+      TRANSFORMERS_INFERENCE_API: "http://host.docker.internal:3001"
+      QUERY_DEFAULTS_LIMIT: "20"
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+
+
+volumes:
+  weaviate_data:
+
+
