@@ -66,4 +66,4 @@ class IntentAgent(BaseAgent):
 
         final_answer = await self.summ_ask(intent, entities, user_info)
         print(final_answer)
-        return final_answer
+        return intent
