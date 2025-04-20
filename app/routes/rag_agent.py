@@ -7,7 +7,7 @@ from app.config import config
 
 
 router = APIRouter(prefix='/rag')
-agent= RagAgent()
+agent = RagAgent()
 
 
 @router.post('/upload')
