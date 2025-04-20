@@ -39,7 +39,7 @@ services:
       - --host
       - 0.0.0.0
       - --port
-      - '3002'
+      - '8080'
       - --scheme
       - http
     image: cr.weaviate.io/semitechnologies/weaviate:1.30.1
@@ -48,7 +48,7 @@ services:
         condition: service_started
     restart: always
     ports:
-      - "3002:3002"
+      - "3002:8080"
       - "50051:50051"
     env_file:
       - .env.production
@@ -62,10 +62,8 @@ services:
       ENABLE_MODULES: "text2vec-transformers"
       OPENAI_API_KEY: ${openai_token}
       OPENAI_API_BASE: ${openai_endpoint}
-      TRANSFORMERS_INFERENCE_API: ${inference_api_endpoint}
+      TRANSFORMERS_INFERENCE_API: ${INFERENCE_API_ENDPOINT}
       QUERY_DEFAULTS_LIMIT: "20"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - weaviate_data:/var/lib/weaviate
 

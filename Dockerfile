@@ -25,6 +25,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 RUN apk --purge del .build-deps
 
 FROM python:3.13-alpine
+RUN apk add --no-cache openblas-dev
 
 COPY --from=builder --chown=app:app /app /app
 ENV PATH="/app/.venv/bin:$PATH"
