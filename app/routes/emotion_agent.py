@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.agents import EmotionAgent
 
-router = APIRouter(prefix='/emot')
+router = APIRouter(prefix='/emotion')
 agent = EmotionAgent()
 
 

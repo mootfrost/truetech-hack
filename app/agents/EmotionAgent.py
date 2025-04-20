@@ -34,5 +34,4 @@ f"""emotion_force для позитивных эмоций градируетс�
 
         print(f'[emotion_evol]: {emotion_evol}')
 
-
         return emotion_evol

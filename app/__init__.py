@@ -18,7 +18,6 @@ app.add_middleware(
 )
 
 app.include_router(kb_agent_router)
-
 app.include_router(in_agent_router)
 app.include_router(em_agent_router)
 
