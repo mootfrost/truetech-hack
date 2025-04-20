@@ -42,6 +42,17 @@ class IntentAgent(BaseAgent):
         response = await chat_model.apredict_messages(messages)
         return response.content
 
+
+    @staticmethod
+    async def summ_ask(intent:str, entitiesstr:str, user_info:str) -> str:
+        message = [
+            SystemMessage(content='Проанализировав все свойствыа ты даешь краткую точную информацию зачем пользователь написал в поддержку на основании данных про него исключительно итоговую оценку'),
+            HumanMessage(content=f'Проанализируй {intent}, {entitiesstr}, {user_info} '),]
+
+        response = await chat_model.apredict_messages(message)
+        return response.content
+
+
     async def run(self, query: str, context: str = '') -> str:
         user_id = context or 'default'
         preprocessed = self.preprocess(query)
@@ -53,4 +64,6 @@ class IntentAgent(BaseAgent):
         print(f'[Entities]: {entities}')
         print(f'[User Info]: {user_info}')
 
+        final_answer = await self.summ_ask(intent, entities, user_info)
+        print(final_answer)
         return intent
