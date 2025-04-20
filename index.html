@@ -7,16 +7,33 @@
         <link rel="stylesheet" href="style.css" /> 
     </head> 
     <body> 
-        <div class="container"> 
-            <h1>API Чат</h1>
-            <div id="chat-box" class="chat-box"></div> 
-            <form id="chat-form"> 
-                <input type="text" id="user-input" placeholder="Введите сообщение..." autocomplete="off" required /> 
-                <button type="submit">Отправить</button> 
-            </form> 
+        <div class="layout">
+            <!-- Левая панель: Результаты -->
+            <div class="left-panel">
+                <h2>Результаты</h2>
+                <div id="result-box" class="result-box"></div>
+            </div>
+            <!-- Правая панель: История + Форма -->
+            <div class="right-panel"> 
+                <div class="history-section"> 
+                    <h2>История</h2> <div id="history-box" class="history-box"></div> 
+                    </div> <form class="form-panel" id="chat-form">
+                        <div class="input-group"> 
+                            <label for="user-input">Запрос пользователя</label> 
+                            <input type="text" id="user-input" required /> 
+                        </div> <div class="input-group"> 
+                            <label for="phone-input">Номер телефона</label> 
+                            <input type="text" id="phone-input"  />
+                        </div> <div class="input-group"> <label for="id-input">ID</label> 
+                            <input type="text" id="id-input"  /> </div>
+                            <div class="input-group"> <label> 
+                                <input type="checkbox" id="test-mode" /> Получить тестовый результат 
+                            </label> 
+                        </div>
+                            <button type="submit">Отправить</button> 
+                        </form> 
+                    </div>
         </div> 
         <script src="script.js"></script> 
-    </body>
+    </body> 
 </html>
-
-
