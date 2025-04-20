@@ -27,7 +27,7 @@ updateLastBotMessage(botMessage);
 }
 });
 
-const data = 'Бот ответил';
+const data = response;
 const botMessage = data.trim();
 
 updateLastBotMessage(botMessage);

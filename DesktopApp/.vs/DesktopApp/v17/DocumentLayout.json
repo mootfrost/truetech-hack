@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|c:\\users\\stixe\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\all code\\\u0445\u0430\u0445\u0430\u0442\u043E\u043D \u043C\u0442\u0441\\desktopapp\\desktopapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|solutionrelative:desktopapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|c:\\users\\stixe\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\all code\\\u0445\u0430\u0445\u0430\u0442\u043E\u043D \u043C\u0442\u0441\\desktopapp\\desktopapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|solutionrelative:desktopapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|c:\\users\\stixe\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\all code\\\u0445\u0430\u0445\u0430\u0442\u043E\u043D \u043C\u0442\u0441\\desktopapp\\desktopapp\\desktopapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{8530053D-7A73-4C52-9A06-03BA8DCCF00D}|DesktopApp\\DesktopApp.csproj|solutionrelative:desktopapp\\desktopapp.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DesktopApp",
+              "DocumentMoniker": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\DesktopApp.csproj",
+              "RelativeDocumentMoniker": "DesktopApp\\DesktopApp.csproj",
+              "ToolTip": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\DesktopApp.csproj",
+              "RelativeToolTip": "DesktopApp\\DesktopApp.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-20T07:53:34.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "DesktopApp\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\MainWindow.xaml",
+              "RelativeToolTip": "DesktopApp\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-20T07:53:13.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "DesktopApp\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Stixe\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\All Code\\\u0425\u0430\u0445\u0430\u0442\u043E\u043D \u041C\u0422\u0421\\DesktopApp\\DesktopApp\\MainWindow.xaml.cs",
+              "RelativeToolTip": "DesktopApp\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-20T07:53:13.357Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
