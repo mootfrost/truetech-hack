@@ -1,6 +1,6 @@
 from langchain.schema import SystemMessage, HumanMessage
 from app.agents.BaseAgent import BaseAgent
-from app.ai_models import chat_model
+from app.deps import chat_model
 from app.agents.examples import good_example, bad_example
 
 
@@ -28,10 +28,7 @@ f"""emotion_force для позитивных эмоций градируетс�
         response = await chat_model.apredict_messages(determination)
         return response.content
 
-    async def run(self, query: str, context: str = '') -> str:
-        user_id = context or 'default'
+    async def run(self, query: str, context: dict = None) -> str:
         emotion_evol = await self.detert_emotion(query)
-
         print(f'[emotion_evol]: {emotion_evol}')
-
         return emotion_evol

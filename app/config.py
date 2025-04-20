@@ -12,6 +12,8 @@ class Config(BaseSettings):
     model_config = SettingsConfigDict(env_nested_max_split=1,
                                       env_nested_delimiter='_')
 
+    db_string: str
+
     openai_token: str
     openai_endpoint: str
     weaviate: WeaviateConfig

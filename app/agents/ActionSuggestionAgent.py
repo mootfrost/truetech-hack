@@ -1,10 +1,9 @@
 from langchain.schema import SystemMessage, HumanMessage
 from app.agents.IntentAgent import IntentAgent
 from app.agents.BaseAgent import BaseAgent
-from app.ai_models import chat_model
+from app.deps import chat_model
 from app.agents.EmotionAgent import EmotionAgent
 from app.agents.RagAgent import RagAgent
-
 
 
 class ActionSuggestionAgent(BaseAgent):
@@ -19,10 +18,9 @@ class ActionSuggestionAgent(BaseAgent):
         response = await chat_model.apredict_messages(messages)
         return response.content
 
-    async def run(self, query: str, context : str ="") -> str:
-
+    async def run(self, query: str, context: dict = None) -> str:
         intent = IntentAgent()
-        end_intent = await intent.get_intent(query)
+        end_intent = await intent.run(query, context)
 
         emot = EmotionAgent()
         end_emot = await emot.detert_emotion(query)
@@ -35,8 +33,3 @@ class ActionSuggestionAgent(BaseAgent):
         print(f'[end_hint]: {end_hint}')
 
         return end_hint
-
-
-
-
-

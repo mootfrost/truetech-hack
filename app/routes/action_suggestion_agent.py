@@ -1,11 +1,29 @@
-from fastapi import APIRouter
-from app.agents import ActionSuggestionAgent
+from typing import Optional
 
-router = APIRouter(prefix='/acti')
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from app.models import User
+from app.agents import ActionSuggestionAgent
+from app.deps import get_session
+
+router = APIRouter(prefix='/suggest')
 agent = ActionSuggestionAgent()
 
 
 @router.get('/query-agent')
-async def request(text: str, id: str):
-    result = await agent.run(query=text, context=id)
+async def request(text: str, id: int | None = None, phone: str | None = None, session: AsyncSession = Depends(get_session)):
+    context = None
+    if id is not None:
+        result = await session.execute(select(User).where(User.id == id))
+        user = result.scalar_one_or_none()
+        if user:
+            context = {'user': user}
+    elif phone is not None:
+        result = await session.execute(select(User).where(User.phone == phone))
+        user = result.scalar_one_or_none()
+        if user:
+            context = {'user': user}
+
+    result = await agent.run(query=text, context=context)
     return {'message': result}
