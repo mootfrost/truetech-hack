@@ -39,7 +39,7 @@ chatForm.addEventListener('submit', async (e) => {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/suggest/query-agent", {
+        const response = await fetch(window.location.origin + "/suggest/query-agent", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
