@@ -7,7 +7,7 @@ from app.config import config
 embedding_model = OpenAIEmbeddings(
     openai_api_key=config.openai_token,
     openai_api_base=config.openai_endpoint,
-    model=config.embedding_model
+    model=config.embedding_model,
 )
 
 chat_model = ChatOpenAI(
