@@ -25,8 +25,8 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data/pgdata
     restart: always
-    ports:
-      - "1877:5432"
+#    ports:
+#      - "1877:5432"
     environment:
       POSTGRES_USER: mts
       POSTGRES_PASSWORD: 8f880hWV2525VLX
@@ -47,9 +47,9 @@ services:
       embedding:
         condition: service_started
     restart: always
-    ports:
-      - "3002:8080"
-      - "50051:50051"
+#    ports:
+#      - "3002:8080"
+#      - "50051:50051"
     env_file:
       - .env.production
     environment:
