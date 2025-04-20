@@ -25,7 +25,7 @@ async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_se
     agent = ActionSuggestionAgent()
     context = None
     if req.id is not None and req.id != "":
-        result = await session.execute(select(User).where(User.id == req.id))
+        result = await session.execute(select(User).where(User.id == int(req.id)))
         user = result.scalar_one_or_none()
         if user:
             context = {"user": user.to_human_readable()}
