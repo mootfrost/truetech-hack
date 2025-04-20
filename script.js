@@ -65,6 +65,7 @@ if (!response.ok) {
     updateResult('❌ Ошибка соединения с сервером.');
     }
     });
+    
     // Функция для форматирования и отображения результатов
     function renderResult({ intent, emotion, suggesion }) {
     let emotionText = '';
