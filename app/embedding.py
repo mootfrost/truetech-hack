@@ -6,12 +6,15 @@ import httpx
 
 app = FastAPI()
 
+
 class EmbeddingRequest(BaseModel):
     model: str
     input: str
 
+
 class EmbeddingResponse(BaseModel):
     embedding: list
+
 
 @app.post("/embed", response_model=EmbeddingResponse)
 async def get_embedding(request: EmbeddingRequest):
@@ -35,6 +38,7 @@ async def get_embedding(request: EmbeddingRequest):
         raise HTTPException(status_code=500, detail='Не удалось получить эмбеддинг из ответа API')
 
     return EmbeddingResponse(embedding=embedding)
+
 
 @app.get("/.well-known/ready")
 async def ready():

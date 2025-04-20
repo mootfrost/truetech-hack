@@ -8,6 +8,7 @@ from app.config import config
 
 router = APIRouter(prefix='/rag')
 
+
 @router.post('/upload')
 async def upload_doc(file: UploadFile = File(...)):
     rag_agent = RagAgent()

@@ -12,7 +12,9 @@ from app.config import config
 
 class RagAgent:
     def __init__(self):
-        self.client = weaviate.connect_to_local(port=3002)
+        self.client = weaviate.connect_to_local(port=config.weaviate.http_port,
+                                                grpc_port=config.weaviate.grpc_port,
+                                                host=config.weaviate.host)
 
         self.vectorstore = WeaviateVectorStore(
             client=self.client,
