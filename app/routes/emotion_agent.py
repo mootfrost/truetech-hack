@@ -25,7 +25,7 @@ headers = {
 
 
 router = APIRouter(prefix='/emo')
-@router.get('/remo')
+@router.get('/request')
 async def remo(text: str):
     resp = requests.post('https://api.gpt.mws.ru/v1/chat/completions', headers=headers, json=classify_with_model(text))
     print(resp.json()["choices"][0]["message"]["content"])
