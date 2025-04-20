@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from app.routes import in_agent_router, em_agent_router, kb_agent_router
+from app.routes import in_agent_router, em_agent_router, kb_agent_router, ac_agent_router
 import uvicorn
 
 
@@ -20,6 +20,7 @@ app.add_middleware(
 app.include_router(kb_agent_router)
 app.include_router(in_agent_router)
 app.include_router(em_agent_router)
+app.include_router(ac_agent_router)
 
 
 __all__ = ['app', 'log_config']
