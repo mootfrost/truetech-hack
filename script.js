@@ -8,49 +8,40 @@ e.preventDefault();
 const message = userInput.value.trim();
 if (!message) return;
 
-appendMessage('Вы', message, 'user');
+appendMessage('Вы', ' '+ message, 'user');
 userInput.value = '';
 
-appendMessage('AI', '...', 'bot');
+appendMessage('API', '...', 'bot');
 
+var response;
 try {
-const response = await fetch('https://api.openai.com/v1/chat/completions', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json',
-'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
-},
-body: JSON.stringify({
-model: 'gpt-3.5-turbo',
-messages: [
-{ role: 'system', content: 'Ты — дружелюбный помощник.' },
-{ role: 'user', content: message }
-]
-})
-}); 
+    response = await fetch('https://api.guvolution.com', {
+    method: 'POST',
+    body: JSON.stringify(message)
+});
 
 updateLastBotMessage(botMessage);
 } catch (error) {
-updateLastBotMessage('Произошла ошибка при обращении к API.');
-console.error('Ошибка:', error);
+    updateLastBotMessage('Произошла ошибка при обращении к API.');
+    console.error('Ошибка:', error);
 }
 });
 
-const data = await response.json();
-const botMessage = data.choices[0].message.content.trim();
+const data = 'Бот ответил';
+const botMessage = data.trim();
 
 updateLastBotMessage(botMessage);
 
 function appendMessage(sender, text, className) {
-const messageElem = document.createElement('div');
-messageElem.className = 'message ' + className;
-messageElem.innerHTML = <span class="${className}">${sender}:</span> + {text};
-chatBox.appendChild(messageElem);
-chatBox.scrollTop = chatBox.scrollHeight;
+    const messageElem = document.createElement('div');
+    messageElem.className = 'message ' + className;
+    messageElem.innerHTML = `<span class=${className}>${sender}:</span>${text}`;
+    chatBox.appendChild(messageElem);
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function updateLastBotMessage(newText) {
-const messages = document.querySelectorAll('.message.bot');
-const last = messages[messages.length - 1];
-if (last) last.innerHTML = <span class="bot">AI:</span> + {newText};
+    const messages = document.querySelectorAll('.message.bot');
+    const last = messages[messages.length - 1];
+    if (last) last.innerHTML = `<span class="bot">AI:</span> + ${newText}`;
 }
