@@ -12,7 +12,6 @@ import logging
 logger = logging.getLogger("uvicorn.error")
 
 router = APIRouter(prefix="/suggest")
-agent = ActionSuggestionAgent()
 
 
 class QueryAgentRequest(BaseModel):
@@ -23,6 +22,7 @@ class QueryAgentRequest(BaseModel):
 
 @router.post("/query-agent")
 async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_session)):
+    agent = ActionSuggestionAgent()
     context = None
     if req.id is not None:
         result = await session.execute(select(User).where(User.id == req.id))

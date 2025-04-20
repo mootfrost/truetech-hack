@@ -9,7 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .idea
-.env
+.env*
 
 app/random_users.sql
 app/res.txt
