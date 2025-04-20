@@ -15,7 +15,7 @@ appendMessage('API', '...', 'bot');
 
 var response;
 try {
-    response = await fetch('https://api.guvolution.com', {
+    response = await fetch('https://api.guvolution.com/', {
     method: 'POST',
     body: JSON.stringify(message)
 });
