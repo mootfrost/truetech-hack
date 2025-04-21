@@ -1,6 +1,6 @@
 from langchain.schema import SystemMessage, HumanMessage
 
-from app.agents import QualityAssuranceAgent
+from app.agents.QualityAssuranceAgent import QualityAssuranceAgent
 from app.agents.IntentAgent import IntentAgent
 from app.agents.BaseAgent import BaseAgent, AgentContext
 from app.deps import chat_model
