@@ -66,6 +66,10 @@ class QualityAssuranceAgent(BaseAgent):
         etn_finder = await self.psyhology_grade(query)
         sum_m = await self.chose_main_problem(mistake_finder, etn_finder)
         last_ans = await self.make_last_answer(sum_m, query)
-        print(last_ans)
-        return last_ans
+        tr = [x for x in last_ans.split("\n") if x != ""]
+        text_changes = tr[tr.index('**Исправленный текст:**') + 1]
+        mistakes = tr[tr.index("**Изменения:**") +1:tr.index("**Изменения:**") +4 ]
+        print(text_changes)
+        print(mistakes)
+        return {"text_changes" : text_changes, "mistakes" : mistakes}
 
