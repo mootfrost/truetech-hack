@@ -32,7 +32,7 @@ class QualityAssuranceAgent(BaseAgent):
             SystemMessage(
                 content="Ты ищешь психологичесую некорректностью ответа выводя только ошибки без вариантов решения"
             ),
-            HumanMessage(content=f"объясни ошибки в: {text} ответа на вопрос: {last_rext} выводя только ошибки без вариантов решения"),
+            HumanMessage(content=f"объясни ошибки в: {text} ответа на вопрос: {last_rext} выводя только ошибки без вариантов решения "),
         ]
         response = await chat_model.apredict_messages(messages)
         return response.content
@@ -54,7 +54,7 @@ class QualityAssuranceAgent(BaseAgent):
             SystemMessage(
                 content="Дыть итоговую оценку тексу, основываясь на главных ошибках"
             ),
-            HumanMessage(content=f"используя ошибки {main_problem} из текста {text} измени на подходящий вариант"),
+            HumanMessage(content=f"используя ошибки {main_problem} из текста {text} измени на подходящий вариант и выдай финальным ответом строку с параметрами '**Исправленный текст:**' и '**Изменения:**'"),
         ]
         response = await chat_model.apredict_messages(messages)
         return response.content
@@ -67,9 +67,9 @@ class QualityAssuranceAgent(BaseAgent):
         sum_m = await self.chose_main_problem(mistake_finder, etn_finder)
         last_ans = await self.make_last_answer(sum_m, query)
         tr = [x for x in last_ans.split("\n") if x != ""]
+
         text_changes = tr[tr.index('**Исправленный текст:**') + 1]
         mistakes = tr[tr.index("**Изменения:**") +1:tr.index("**Изменения:**") +4 ]
-        print(text_changes)
-        print(mistakes)
+        logger.debug(text_changes)
+        logger.debug(mistakes)
         return {"text_changes" : text_changes, "mistakes" : mistakes}
-
