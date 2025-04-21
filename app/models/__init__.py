@@ -1,7 +1,8 @@
 from app.models.Base import Base
-from app.models.User import User
+from app.models.Client import Client
+from app.models.Dialog import Dialog
 
-__all__ = ["User", "Base"]
+__all__ = ["Client", "Base", 'Dialog']
 
 """
 POST

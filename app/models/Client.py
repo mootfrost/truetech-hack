@@ -2,8 +2,8 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.models import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class Client(Base):
+    __tablename__ = "clients"
 
     id: Mapped[int] = mapped_column(
         primary_key=True, autoincrement=True, info={"label": "ID"}
@@ -75,4 +75,4 @@ class User(Base):
         return serialized_data
 
 
-__all__ = ["User"]
+__all__ = ["Client"]

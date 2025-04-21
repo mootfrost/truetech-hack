@@ -1,6 +1,6 @@
 from langchain.schema import SystemMessage, HumanMessage
 from app.agents.IntentAgent import IntentAgent
-from app.agents.BaseAgent import BaseAgent
+from app.agents.BaseAgent import BaseAgent, AgentContext
 from app.deps import chat_model
 from app.agents.EmotionAgent import EmotionAgent
 from app.agents.RagAgent import RagAgent
@@ -21,11 +21,11 @@ class ActionSuggestionAgent(BaseAgent):
         response = await chat_model.apredict_messages(messages)
         return response.content
 
-    async def run(self, query: str, context: dict = None) -> str:
+    async def run(self, query: str, context: AgentContext | None) -> str:
         intent = IntentAgent()
         end_intent = await intent.run(query, context)
         emot = EmotionAgent()
-        end_emot = await emot.run(query)
+        end_emot = await emot.run(query, context)
         answer = RagAgent()
         end_answer = await answer.run(query, context)
 

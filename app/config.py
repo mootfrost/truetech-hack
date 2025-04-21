@@ -18,6 +18,7 @@ class Config(BaseSettings):
     weaviate: WeaviateConfig
     embedding_model: str
     chat_model: str
+    api_port: int = 3000
 
 
 config = Config(_env_file=".env")

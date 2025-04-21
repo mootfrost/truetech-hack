@@ -1,5 +1,5 @@
 from langchain.schema import SystemMessage, HumanMessage
-from app.agents.BaseAgent import BaseAgent
+from app.agents.BaseAgent import BaseAgent, AgentContext
 from app.deps import chat_model
 import logging
 import re
@@ -66,13 +66,13 @@ class IntentAgent(BaseAgent):
         response = await chat_model.apredict_messages(message)
         return response.content
 
-    async def run(self, query: str, context: dict = None) -> str:
+    async def run(self, query: str, context: AgentContext | None) -> str:
         preprocessed = self.preprocess(query)
         user_info = None
         if context:
-            user_info = await self.analyze_user(context["user"])
+            # user_info = await self.analyze_user(context.user_data)
             preprocessed += (
-                " То, что мы знаем о пользователе, это может помочь:" + user_info
+                "То, что мы знаем о пользователе. Эти данные могут помочь уточнить, например, по какому сервису возник вопрос:" + context.user_data
             )
             logger.debug(f"[User Info]: {user_info}")
 

@@ -5,7 +5,7 @@ import tempfile
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 import os
-from app.agents.BaseAgent import BaseAgent
+from app.agents.BaseAgent import BaseAgent, AgentContext
 from langchain.prompts import PromptTemplate
 from tiktoken import get_encoding
 
@@ -29,6 +29,7 @@ class RagAgent(BaseAgent):
             embedding=embedding_model,
         )
 
+
         self.prompt = PromptTemplate(
             template="Предоставь чистый ответ, не пиши ничего лишноего, только ответ на вопрос"
             "Контекст: {context}\n"
@@ -36,15 +37,16 @@ class RagAgent(BaseAgent):
             input_variables=["context", "question"],
         )
 
-    async def run(self, query: str, context: dict = None) -> str:
+    async def run(self, query: str, context: AgentContext | None) -> str:
         retriever = self.vectorstore.as_retriever()
         chain = RetrievalQA.from_chain_type(
             llm=chat_model,
             retriever=retriever,
-            chain_type="stuff",
-            chain_type_kwargs={"prompt": self.prompt},
+            chain_type='stuff',
+            chain_type_kwargs={'prompt': self.prompt},
         )
-        return chain.run(query)
+        resp = chain.run(query)
+        return resp
 
     @staticmethod
     def batch_documents(docs, batch_size):
@@ -74,14 +76,14 @@ class RagAgent(BaseAgent):
             tmp.write(await file.read())
             tmp_path = tmp.name
 
-        loader = TextLoader(tmp_path, encoding="utf-8")
+        loader = TextLoader(tmp_path, encoding='utf-8')
         documents = loader.load()
         os.remove(tmp_path)
 
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size=3000, chunk_overlap=500, separators=["},", "}\n"]
+            chunk_size=3000, chunk_overlap=500, separators=['},', '}\n']
         )
         docs = splitter.split_documents(documents)
         for batch in self.batch_by_token_limit(docs, token_limit=8192):
             await self.vectorstore.aadd_documents(batch)
-        return {"chunks": len(docs), "status": "ok"}
+        return {'status': 'ok', 'chunks': len(docs), }

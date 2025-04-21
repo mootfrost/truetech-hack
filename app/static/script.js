@@ -64,13 +64,13 @@ chatForm.addEventListener('submit', async (e) => {
     }
 });
 
-function renderResult({ intent, emotion, suggestion }) {
-    let emotionText = '';
-    if (emotion <= 30) emotionText = 'спокоен 😌';
-    else if (emotion <= 60) emotionText = 'раздражён 😠';
-    else emotionText = 'напряжен 😡 возможно, ожидает немедленного решения';
+function renderResult({ intent, emotion_force, emotion, suggestion }) {
+    // let emotionText = '';
+    // if (emotion <= 30) emotionText = 'спокоен 😌';
+    // else if (emotion <= 60) emotionText = 'раздражён 😠';
+    // else emotionText = 'напряжен 😡 возможно, ожидает немедленного решения';
 
-    const html = `<p><strong>Причина обращения:</strong> ${intent || 'Не определено'}</p>     <p><strong>Эмоциональность:</strong> ${emotion} (${emotionText})</p>     <p><strong>Рекомендуемое решение:</strong><br>${suggestion}</p>`;
+    const html = `<p><strong>Причина обращения:</strong> ${intent || 'Не определено'}</p>     <p><strong>"Эмоция":</strong> ${emotion} (${emotion_force})</p>     <p><strong>Рекомендуемое решение:</strong><br>${suggestion}</p>`;
 
     resultBox.innerHTML = html;
 }

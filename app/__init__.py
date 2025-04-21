@@ -7,6 +7,8 @@ from app.routes import (
     em_agent_router,
     kb_agent_router,
     ac_agent_router,
+    dialog_router,
+    client_router
 )
 import uvicorn
 
@@ -33,6 +35,8 @@ app.include_router(kb_agent_router)
 app.include_router(in_agent_router)
 app.include_router(em_agent_router)
 app.include_router(ac_agent_router)
+app.include_router(dialog_router)
+app.include_router(client_router)
 
 
 @app.get("/")

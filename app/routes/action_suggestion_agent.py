@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.models import User
-from app.agents import ActionSuggestionAgent
+from app.models import Client, Dialog
+from app.agents import ActionSuggestionAgent, AgentContext
 from app.deps import get_session
 from pydantic import BaseModel
 
@@ -16,33 +16,35 @@ router = APIRouter(prefix="/suggest")
 
 class QueryAgentRequest(BaseModel):
     question: str
-    id: int | None | str = None
-    phone: str | None = None
+    client_id: int | None = None
+    dialog_id: int | None = None
 
 
 @router.post("/query-agent")
 async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_session)):
-    agent = ActionSuggestionAgent()
     context = None
-    if req.id is not None and req.id != "":
-        result = await session.execute(select(User).where(User.id == int(req.id)))
-        user = result.scalar_one_or_none()
-        if user:
-            context = {"user": user.to_human_readable()}
-    elif req.phone is not None and req.phone != "":
-        result = await session.execute(select(User).where(User.phone == req.phone))
-        user = result.scalar_one_or_none()
-        if user:
-            context = {"user": user.to_human_readable()}
+    if req.dialog_id:
+        convo = await session.get(Dialog, req.dialog_id)
+        print(convo.client_id)
+        if not convo:
+            raise HTTPException(status_code=404, detail='Dialog not found')
+        client = await session.get(Client, convo.client_id)
+        context = AgentContext('\n'.join(convo.messages), str(client.to_human_readable()))
+    elif req.client_id:
+        client = await session.get(Client, req.client_id)
+        context = AgentContext('', str(client.to_human_readable()))
 
+    agent = ActionSuggestionAgent()
     intent, emote, result = await agent.run(query=req.question, context=context)
     try:
-        force = json.loads(emote)["emotion_force"]
+        parse = json.loads(emote)
     except:
-        force = 50
+        parse = None
         logger.error("FAILED TO PARSE EMOTION", emote)
+
     return {
-        "intent": intent,
-        "emotion": force,
-        "suggestion": result,
+        'intent': intent,
+        'emotion_force': parse.get('emotion_force') or 50,
+        'emotion': parse.get('emotion') or 'спокоен',
+        'answer': result,
     }
