@@ -27,7 +27,7 @@ class ActionSuggestionAgent(BaseAgent):
         emot = EmotionAgent()
         end_emot = await emot.run(query, context)
         answer = RagAgent()
-        end_answer = await answer.run(query, context)
+        end_answer = await answer.run(end_intent, context)
 
         # end_hint = await self.hint(end_intent, end_emot, end_answer)
 
