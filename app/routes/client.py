@@ -9,7 +9,7 @@ router = APIRouter(prefix='/client')
 
 
 @router.get('/')
-async def get_client(id: int = Query(None), phone: int = Query(None), session: AsyncSession = Depends(get_session)):
+async def get_client(id: int = Query(None), phone: str = Query(None), session: AsyncSession = Depends(get_session)):
     stmt = select(Client)
     if id:
         stmt = stmt.where(Client.id == id)
