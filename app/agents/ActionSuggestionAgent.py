@@ -37,4 +37,4 @@ class ActionSuggestionAgent(BaseAgent):
 
         # print(f'[end_hint]: {end_hint}')
 
-        return end_intent, end_emot, end_answer, quality_analysis['text_changes'] + '\n' + quality_analysis['mistakes']
+        return end_intent, end_emot, end_answer, quality_analysis['text_changes'] + '\n' + '\n'.join(quality_analysis['mistakes'])

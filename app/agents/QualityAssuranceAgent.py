@@ -69,7 +69,7 @@ class QualityAssuranceAgent(BaseAgent):
         tr = [x for x in last_ans.split("\n") if x != ""]
 
         text_changes = tr[tr.index('**Исправленный текст:**') + 1]
-        mistakes = tr[tr.index("**Изменения:**") +1:tr.index("**Изменения:**") +4 ]
+        mistakes = tr[tr.index("**Изменения:**") +1:tr.index("**Изменения:**") +4]
         logger.debug(text_changes)
         logger.debug(mistakes)
         return {"text_changes" : text_changes, "mistakes" : mistakes}
