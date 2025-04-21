@@ -74,6 +74,10 @@ class IntentAgent(BaseAgent):
             preprocessed += (
                 "То, что мы знаем о пользователе. Эти данные могут помочь уточнить, например, по какому сервису возник вопрос:" + context.user_data
             )
+
+            preprocessed += (
+                "\nВот история предыдущих сообщений, она может помочь понять контекст запроса: \n"+ context.message_history
+            )
             logger.debug(f"[User Info]: {user_info}")
 
         intent = await self.get_intent(preprocessed)
