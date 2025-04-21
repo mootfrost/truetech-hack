@@ -3,4 +3,5 @@ export default interface Suggestion {
     emotion_force: number
     emotion: string
     answer: string
+    qa: string
 }

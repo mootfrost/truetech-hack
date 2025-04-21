@@ -1,4 +1,6 @@
 from langchain.schema import SystemMessage, HumanMessage
+
+from app.agents import QualityAssuranceAgent
 from app.agents.IntentAgent import IntentAgent
 from app.agents.BaseAgent import BaseAgent, AgentContext
 from app.deps import chat_model
@@ -28,9 +30,11 @@ class ActionSuggestionAgent(BaseAgent):
         end_emot = await emot.run(query, context)
         answer = RagAgent()
         end_answer = await answer.run(query + f'Возможное намерение пользователя: {end_intent}', context)
+        agent = QualityAssuranceAgent()
+        quality_analysis = await agent.run(end_answer, context)
 
         # end_hint = await self.hint(end_intent, end_emot, end_answer)
 
         # print(f'[end_hint]: {end_hint}')
 
-        return end_intent, end_emot, end_answer
+        return end_intent, end_emot, end_answer, quality_analysis

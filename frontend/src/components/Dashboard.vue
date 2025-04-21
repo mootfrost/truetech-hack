@@ -91,6 +91,7 @@ function onSenderChange(value: string) {
         <h2>Результаты</h2>
         <div id="result-box" class="result-box">
           <ResponseCard :suggestion="currentSuggestion" v-if="currentSuggestion && !waiting"/>
+          <span>{{}}</span>
           <span v-if="waiting">⏳ Получение ответа...</span>
         </div>
       </div>

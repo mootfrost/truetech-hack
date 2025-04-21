@@ -8,7 +8,9 @@ defineProps<{ suggestion: Suggestion }>()
 <template>
   <span><strong>Причина обращения: </strong>{{suggestion.intent}}</span><br>
   <span><strong>Эмоция: </strong>{{suggestion.emotion}} ({{suggestion.emotion_force}})</span><br>
-  <span><strong>Рекомендуемое решение: </strong>{{suggestion.answer}}</span>
+  <span><strong>Рекомендуемое решение: </strong>{{suggestion.answer}}</span><br><br>
+
+  <span><strong>Анализ полученного решения: </strong>{{suggestion.qa}}</span><br><br>
 </template>
 
 <style scoped>

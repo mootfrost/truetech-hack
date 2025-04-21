@@ -35,7 +35,7 @@ async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_se
         context = AgentContext('', str(client.to_human_readable()))
 
     agent = ActionSuggestionAgent()
-    intent, emote, result = await agent.run(query=req.question, context=context)
+    intent, emote, result, qa_analys = await agent.run(query=req.question, context=context)
     try:
         parse = json.loads(emote)
     except:
@@ -47,4 +47,5 @@ async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_se
         'emotion_force': parse.get('emotion_force') or 50,
         'emotion': parse.get('emotion') or 'спокоен',
         'answer': result,
+        'qa': qa_analys
     }
