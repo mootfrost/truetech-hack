@@ -22,7 +22,7 @@ const currentSuggestion = ref<Suggestion>()
 
 
 async function getClientByPhone() {
-  const resp = await axios.get(`/client`, {
+  const resp = await axios.get(`/client/`, {
     params: {
       phone: phone.value
     }
@@ -31,7 +31,7 @@ async function getClientByPhone() {
 }
 
 async function getClientById() {
-  const resp = await axios.get(`/client`, {
+  const resp = await axios.get(`/client/`, {
     params: {
       id: client_id.value
     }
