@@ -63,7 +63,7 @@ class QualityAssuranceAgent(BaseAgent):
     async def run(self, query: str, context: dict = None) -> str:
         user_info = None
         mistake_finder = await self.text_grade(query)
-        etn_finder = await self.psyhology_grade(query)
+        etn_finder = await self.psyhology_grade(query, context['question'])
         sum_m = await self.chose_main_problem(mistake_finder, etn_finder)
         last_ans = await self.make_last_answer(sum_m, query)
         tr = [x for x in last_ans.split("\n") if x != ""]

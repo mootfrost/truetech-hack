@@ -32,7 +32,7 @@ class ActionSuggestionAgent(BaseAgent):
         end_answer = await answer.run(query + f'Возможное намерение пользователя: {end_intent}', context)
         try:
             agent = QualityAssuranceAgent()
-            quality_analysis = await agent.run(end_answer, context)
+            quality_analysis = await agent.run(end_answer, {'question': query + end_intent})
             qa_res = quality_analysis['text_changes'] + '\n' + '\n'.join(quality_analysis['mistakes'])
         except:
             qa_res = ''
