@@ -10,7 +10,7 @@ defineProps<{ suggestion: Suggestion }>()
   <span><strong>Эмоция: </strong>{{suggestion.emotion}} ({{suggestion.emotion_force}})</span><br>
   <span><strong>Рекомендуемое решение: </strong>{{suggestion.answer}}</span><br><br>
 
-  <span><strong>Анализ полученного решения: </strong>{{suggestion.qa}}</span><br><br>
+  <p><strong>Анализ полученного решения: </strong>{{suggestion.qa}}</p><br><br>
 </template>
 
 <style scoped>

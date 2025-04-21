@@ -39,7 +39,7 @@ async def request(req: QueryAgentRequest, session: AsyncSession = Depends(get_se
     try:
         parse = json.loads(emote)
     except:
-        parse = None
+        parse = {'emotion_force': 50, 'emotion': ''}
         logger.error("FAILED TO PARSE EMOTION", emote)
 
     return {

@@ -30,11 +30,15 @@ class ActionSuggestionAgent(BaseAgent):
         end_emot = await emot.run(query, context)
         answer = RagAgent()
         end_answer = await answer.run(query + f'Возможное намерение пользователя: {end_intent}', context)
-        agent = QualityAssuranceAgent()
-        quality_analysis = await agent.run(end_answer, context)
+        try:
+            agent = QualityAssuranceAgent()
+            quality_analysis = await agent.run(end_answer, context)
+            qa_res = quality_analysis['text_changes'] + '\n' + '\n'.join(quality_analysis['mistakes'])
+        except:
+            qa_res = ''
 
         # end_hint = await self.hint(end_intent, end_emot, end_answer)
 
         # print(f'[end_hint]: {end_hint}')
 
-        return end_intent, end_emot, end_answer, quality_analysis['text_changes'] + '\n' + '\n'.join(quality_analysis['mistakes'])
+        return end_intent, end_emot, end_answer, qa_res
