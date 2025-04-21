@@ -4,6 +4,9 @@ from app.agents.BaseAgent import BaseAgent
 from app.agents.BaseAgent import AgentContext
 from app.agents.EmotionAgent import EmotionAgent
 from app.agents.ActionSuggestionAgent import ActionSuggestionAgent
+from app.agents.EmotionAgent import EmotionAgent
+from app.agents.ActionSuggestionAgent import ActionSuggestionAgent
+from app.agents.QualityAssuranceAgent import QualityAssuranceAgent
 
 __all__ = [
     "RagAgent",
@@ -11,5 +14,6 @@ __all__ = [
     "BaseAgent",
     "EmotionAgent",
     "ActionSuggestionAgent",
-    'AgentContext'
+    'AgentContext',
+    "QualityAssuranceAgent"
 ]
