@@ -6,13 +6,13 @@ services:
     env_file:
       - .env.production
     restart: always
-    ports:
-      - "8082:3000"
     command: >
       sh -c "python app/embedding.py"
 
   api:
     <<: *embedding
+    ports:
+      - "8082:3000"
     command: >
       sh -c "python -m alembic upgrade head && python app/__main__.py"
 
@@ -25,7 +25,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.truehack_mootfrost_dev.rule=Host(`truehack.mootfrost.dev`)
-      - traefik.http.services.truehack_mootfrost_dev.loadbalancer.server.port=3000
+      - traefik.http.services.truehack_mootfrost_dev.loadbalancer.server.port=80
     ports:
       - "8081:80"
   db:
@@ -55,9 +55,9 @@ services:
       embedding:
         condition: service_started
     restart: always
-#    ports:
-#      - "3002:8080"
-#      - "50051:50051"
+    ports:
+      - "3002:8080"
+      - "50051:50051"
     env_file:
       - .env.production
     environment:
